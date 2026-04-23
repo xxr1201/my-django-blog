@@ -1,162 +1,104 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>我的技术博客</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
-        }
-        body {
-            background: #f8f9fa;
-        }
-        .header {
-            background: linear-gradient(90deg, #6a85f0, #7b4bb8);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .nav {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #2c3e50;
-            display: flex;
-        }
-        .nav a {
-            padding: 15px 30px;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .nav a.active {
-            background: #3498db;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
-        .main {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-        }
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .article {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        .avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            margin: 0 auto 10px;
-        }
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-        .page {
-            display: none;
-        }
-        .page.active {
-            display: block;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>我的技术博客</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft YaHei,sans-serif}
+body{background:#f8f9fa}
+.header{background:linear-gradient(90deg,#6a85f0,#7b4bb8);color:#fff;text-align:center;padding:40px 20px}
+.nav{max-width:1000px;margin:0 auto;background:#2c3e50;display:flex}
+.nav span{padding:15px 30px;color:#fff;cursor:pointer}
+.nav span.active{background:#3498db}
+.container{max-width:1000px;margin:20px auto;display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.main{background:#fff;padding:25px;border-radius:8px}
+.sidebar{display:flex;flex-direction:column;gap:15px}
+.card{background:#fff;padding:20px;border-radius:8px}
+.article{margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee}
+.avatar{width:90px;height:90px;border-radius:50%;margin:0 auto 10px}
+.avatar img{width:100%;height:100%;border-radius:50%}
+.page{display:none}
+.page.active{display:block}
+</style>
 </head>
 <body>
 
 <div class="header">
-    <h1>我的技术博客</h1>
-    <p>记录前端的学习之路</p>
+<h1>我的技术博客</h1>
+<p>记录前端的学习之路</p>
 </div>
 
 <div class="nav">
-    <a onclick="go('home')" class="active" id="nav-home">首页</a>
-    <a onclick="go('article')" id="nav-article">文章</a>
-    <a onclick="go('about')" id="nav-about">关于我</a>
+<span class="active" onclick="show('home')">首页</span>
+<span onclick="show('article')">文章</span>
+<span onclick="show('about')">关于我</span>
 </div>
 
 <div class="container">
-    <div class="main">
-        <!-- 首页 -->
-        <div class="page active" id="page-home">
-            <h2>最新文章</h2>
-            <div class="article">
-                <h3>我的博客</h3>
-                <p>2026-04-19</p>
-                <p>这是我做的第一个博客！</p>
-            </div>
-        </div>
+<div class="main">
 
-        <!-- 文章页 -->
-        <div class="page" id="page-article">
-            <h2>全部文章</h2>
-            <div class="article">
-                <h3>我的博客</h3>
-                <p>2026-04-19 作者：xxr</p>
-                <p>这是我用HTML做的第一个博客，非常有成就感！</p>
-            </div>
-            <div class="article">
-                <h3>学习CSS布局</h3>
-                <p>2026-04-20 作者：xxr</p>
-                <p>CSS布局真好玩，我学会了Grid和Flex！</p>
-            </div>
-        </div>
+<!-- 首页 -->
+<div class="page active" id="home">
+<h2>最新文章</h2>
+<div class="article">
+<h3>我的博客</h3>
+<p>2026-04-19</p>
+<p>这是我做的第一个博客！</p>
+</div>
+</div>
 
-        <!-- 关于我 -->
-        <div class="page" id="page-about">
-            <h2>关于我</h2>
-            <p style="margin:15px 0;">我是 xxr，一名23网工的学生。</p>
-            <p>喜欢编程、做网页、写博客，正在努力学习前端中！</p>
-        </div>
-    </div>
+<!-- 文章页 -->
+<div class="page" id="article">
+<h2>全部文章</h2>
+<div class="article">
+<h3>我的博客</h3>
+<p>2026-04-19 作者：xxr</p>
+<p>这是我用HTML做的第一个博客，非常有成就感！</p>
+</div>
+<div class="article">
+<h3>学习CSS布局</h3>
+<p>2026-04-20 作者：xxr</p>
+<p>CSS布局真好玩，我学会了Grid和Flex！</p>
+</div>
+</div>
 
-    <div class="sidebar">
-        <div class="card">
-            <h3>关于作者</h3>
-            <div class="avatar">
-                <img src="https://picsum.photos/100/100" alt="头像">
-            </div>
-            <p style="text-align:center; margin-top:10px;">xxr<br>23网工学生</p>
-        </div>
+<!-- 关于我 -->
+<div class="page" id="about">
+<h2>关于我</h2>
+<p style="margin:15px 0">我是 xxr，一名23网工的学生。</p>
+<p>喜欢编程、做网页、写博客，正在努力学习前端中！</p>
+</div>
 
-        <div class="card">
-            <h3>当前时间</h3>
-            <p id="time" style="text-align:center;"></p>
-        </div>
-    </div>
+</div>
+
+<div class="sidebar">
+<div class="card">
+<h3>关于作者</h3>
+<div class="avatar">
+<img src="https://picsum.photos/100/100" alt="头像">
+</div>
+<p style="text-align:center;margin-top:10px">xxr<br>23网工学生</p>
+</div>
+
+<div class="card">
+<h3>当前时间</h3>
+<p id="time" style="text-align:center"></p>
+</div>
+</div>
+
 </div>
 
 <script>
-    // 切换页面
-    function go(page) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-        document.getElementById('page-' + page).classList.add('active');
-        document.getElementById('nav-' + page).classList.add('active');
-    }
+function show(id) {
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.querySelectorAll('.nav span').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+event.target.classList.add('active');
+}
 
-    // 时间
-    setInterval(() => {
-        document.getElementById('time').innerText = new Date().toLocaleTimeString();
-    }, 1000);
+setInterval(function(){
+document.getElementById('time').innerText=new Date().toLocaleTimeString();
+},1000);
 </script>
 
 </body>
