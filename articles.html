@@ -1,82 +1,62 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章 - 我的技术博客</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        .banner {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-        }
-        .banner h1 { font-size: 2rem; margin-bottom: 5px; }
-        nav {
-            background-color: #2c3e50;
-            display: flex;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 12px 24px;
-        }
-        nav a.active { background-color: #3498db; }
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-        .card h2 {
-            border-left: 4px solid #3498db;
-            padding-left: 10px;
-            margin-bottom: 15px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            border-top: 1px solid #eee;
-            margin-top: 30px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>文章 - 我的技术博客</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft YaHei}
+body{background:#f8f9fa}
+.header{background:linear-gradient(90deg,#6a85f0,#7b4bb8);color:#fff;text-align:center;padding:40px 20px}
+.nav{max-width:1000px;margin:0 auto;background:#2c3e50;display:flex}
+.nav a{padding:15px 30px;color:#fff;text-decoration:none}
+.nav a.active{background:#3498db}
+.container{max-width:1000px;margin:20px auto;display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.main{background:#fff;padding:25px;border-radius:8px}
+.sidebar{display:flex;flex-direction:column;gap:15px}
+.card{background:#fff;padding:20px;border-radius:8px}
+.article{margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee}
+.avatar{width:90px;height:90px;border-radius:50%;margin:0 auto}
+.avatar img{width:100%;height:100%;border-radius:50%}
+</style>
 </head>
 <body>
-    <div class="banner">
-        <h1>我的技术博客</h1>
-        <p>记录前端与 Python 学习之路</p>
-    </div>
-    <nav>
-        <a href="index.html">首页</a>
-        <a href="articles.html" class="active">文章</a>
-        <a href="about.html">关于我</a>
-    </nav>
-    <div class="container">
-        <div class="card">
-            <h2>全部文章</h2>
-            <p>• Django 环境搭建</p>
-            <p>• GitHub Pages 部署博客</p>
-            <p>• HTML + CSS 基础</p>
-        </div>
-    </div>
-    <footer>© 2026 我的技术博客</footer>
+
+<div class="header">
+<h1>我的技术博客</h1>
+<p>记录前端的学习之路</p>
+</div>
+
+<div class="nav">
+<a href="index.html">首页</a>
+<a href="articles.html" class="active">文章</a>
+<a href="about.html">关于我</a>
+</div>
+
+<div class="container">
+<div class="main">
+<h2>全部文章</h2>
+<div class="article">
+<h3>我的博客</h3>
+<p>2026-04-19 作者：xxr</p>
+<p>这是我用HTML做的第一个博客！</p>
+</div>
+<div class="article">
+<h3>CSS 布局学习</h3>
+<p>2026-04-20 作者：xxr</p>
+<p>我学会了 Flex 和 Grid！</p>
+</div>
+</div>
+
+<div class="sidebar">
+<div class="card">
+<h3>关于作者</h3>
+<div class="avatar">
+<img src="https://picsum.photos/100/100">
+</div>
+<p style="text-align:center;margin-top:10px">xxr<br>23网工学生</p>
+</div>
+</div>
+</div>
+
 </body>
 </html>
