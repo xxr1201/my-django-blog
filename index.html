@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的技术博客</title>
     <style>
         * {
@@ -12,240 +11,153 @@
             font-family: "Microsoft YaHei", sans-serif;
         }
         body {
-            background-color: #f8f9fa;
+            background: #f8f9fa;
         }
-        /* 头部Banner */
-        .header-banner {
+        .header {
             background: linear-gradient(90deg, #6a85f0, #7b4bb8);
             color: white;
             text-align: center;
             padding: 40px 20px;
         }
-        .header-banner h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        .header-banner p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        /* 导航栏 */
-        .navbar {
-            display: flex;
-            background-color: #2c3e50;
-            border-radius: 8px 8px 0 0;
-            margin: 0 auto;
+        .nav {
             max-width: 1000px;
-            width: 100%;
+            margin: 0 auto;
+            background: #2c3e50;
+            display: flex;
         }
-        .navbar a {
+        .nav a {
             padding: 15px 30px;
             color: white;
             text-decoration: none;
-            font-size: 16px;
+            cursor: pointer;
         }
-        .navbar a.active {
-            background-color: #3498db;
+        .nav a.active {
+            background: #3498db;
         }
-        /* 主容器 */
         .container {
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 20px auto;
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 20px;
-            padding: 20px 0;
         }
-        /* 文章区域 */
-        .main-content {
-            background-color: white;
+        .main {
+            background: white;
             padding: 25px;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: 8px;
         }
-        .section-title {
-            font-size: 28px;
-            margin-bottom: 25px;
-            padding-left: 12px;
-            border-left: 4px solid #3498db;
-        }
-        .article-item {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        .article-title {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .article-meta {
-            color: #999;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-        .article-excerpt {
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .read-more {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        /* 侧边栏 */
         .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
-        .sidebar-card {
-            background-color: white;
+        .card {
+            background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .sidebar-title {
-            text-align: center;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #3498db;
+        .article {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
         }
-        /* 作者信息 */
-        .author-avatar {
-            width: 80px;
-            height: 80px;
+        .avatar {
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            margin: 0 auto 15px;
-            overflow: hidden;
+            margin: 0 auto 10px;
         }
-        .author-avatar img {
+        .avatar img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            border-radius: 50%;
         }
-        .author-bio {
-            text-align: center;
-            color: #666;
-            line-height: 1.6;
+        .page {
+            display: none;
         }
-        /* 当前时间 */
-        .time-display {
-            font-size: 18px;
-            color: #333;
-        }
-        /* 关注我 */
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .social-btn {
-            padding: 8px 16px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        /* 订阅更新 */
-        .subscribe-form {
-            margin-top: 15px;
-        }
-        .subscribe-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .subscribe-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .page.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <!-- 头部Banner -->
-    <div class="header-banner">
-        <h1>我的技术博客</h1>
-        <p>记录前端的学习之路</p>
-    </div>
 
-    <!-- 导航栏 -->
-    <div class="navbar">
-        <a href="#" class="active">首页</a>
-        <a href="#">文章</a>
-        <a href="#">关于我</a>
-    </div>
+<div class="header">
+    <h1>我的技术博客</h1>
+    <p>记录前端的学习之路</p>
+</div>
 
-    <!-- 主容器 -->
-    <div class="container">
-        <!-- 文章区域 -->
-        <div class="main-content">
-            <h2 class="section-title">最新文章</h2>
-            <div class="article-item">
-                <h3 class="article-title">我的博客</h3>
-                <div class="article-meta">2026-04-19</div>
-                <p class="article-excerpt">这是我做的第一个博客！...</p>
-                <a href="#" class="read-more">阅读全文</a>
+<div class="nav">
+    <a onclick="go('home')" class="active" id="nav-home">首页</a>
+    <a onclick="go('article')" id="nav-article">文章</a>
+    <a onclick="go('about')" id="nav-about">关于我</a>
+</div>
+
+<div class="container">
+    <div class="main">
+        <!-- 首页 -->
+        <div class="page active" id="page-home">
+            <h2>最新文章</h2>
+            <div class="article">
+                <h3>我的博客</h3>
+                <p>2026-04-19</p>
+                <p>这是我做的第一个博客！</p>
             </div>
         </div>
 
-        <!-- 侧边栏 -->
-        <div class="sidebar">
-            <!-- 关于作者 -->
-            <div class="sidebar-card">
-                <h3 class="sidebar-title">关于作者</h3>
-                <div class="author-avatar">
-                    <img src="https://picsum.photos/100/100" alt="头像">
-                </div>
-                <p class="author-bio">
-                    xxr，热爱编程的学习者，专注前端、Python与全栈开发。喜欢记录、分享与总结，希望用文字帮助更多同行成长。
-                </p>
+        <!-- 文章页 -->
+        <div class="page" id="page-article">
+            <h2>全部文章</h2>
+            <div class="article">
+                <h3>我的博客</h3>
+                <p>2026-04-19 作者：xxr</p>
+                <p>这是我用HTML做的第一个博客，非常有成就感！</p>
             </div>
+            <div class="article">
+                <h3>学习CSS布局</h3>
+                <p>2026-04-20 作者：xxr</p>
+                <p>CSS布局真好玩，我学会了Grid和Flex！</p>
+            </div>
+        </div>
 
-            <!-- 当前时间 -->
-            <div class="sidebar-card">
-                <h3 class="sidebar-title">当前时间</h3>
-                <p class="time-display" id="current-time">16:07:20</p>
-            </div>
-
-            <!-- 关注我 -->
-            <div class="sidebar-card">
-                <h3 class="sidebar-title">关注我</h3>
-                <div class="social-buttons">
-                    <button class="social-btn">GitHub</button>
-                    <button class="social-btn">知乎</button>
-                </div>
-            </div>
-
-            <!-- 订阅更新 -->
-            <div class="sidebar-card">
-                <h3 class="sidebar-title">订阅更新</h3>
-                <div class="subscribe-form">
-                    <input type="email" class="subscribe-input" placeholder="输入你的邮箱">
-                    <button class="subscribe-btn">订阅</button>
-                </div>
-            </div>
+        <!-- 关于我 -->
+        <div class="page" id="page-about">
+            <h2>关于我</h2>
+            <p style="margin:15px 0;">我是 xxr，一名23网工的学生。</p>
+            <p>喜欢编程、做网页、写博客，正在努力学习前端中！</p>
         </div>
     </div>
 
-    <script>
-        // 实时更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
-            document.getElementById('current-time').textContent = timeStr;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-    </script>
+    <div class="sidebar">
+        <div class="card">
+            <h3>关于作者</h3>
+            <div class="avatar">
+                <img src="https://picsum.photos/100/100" alt="头像">
+            </div>
+            <p style="text-align:center; margin-top:10px;">xxr<br>23网工学生</p>
+        </div>
+
+        <div class="card">
+            <h3>当前时间</h3>
+            <p id="time" style="text-align:center;"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 切换页面
+    function go(page) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+        document.getElementById('page-' + page).classList.add('active');
+        document.getElementById('nav-' + page).classList.add('active');
+    }
+
+    // 时间
+    setInterval(() => {
+        document.getElementById('time').innerText = new Date().toLocaleTimeString();
+    }, 1000);
+</script>
+
 </body>
 </html>
