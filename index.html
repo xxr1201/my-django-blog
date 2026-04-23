@@ -1,216 +1,139 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的技术博客</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的技术博客 - 文章列表</title>
+<style>
+    /* 全局重置 */
+    *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    body{background:#f6f8fa;color:#333;line-height:1.6}
 
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
+    /* 最大容器 */
+    .container{max-width:1200px;margin:0 auto;padding:20px}
 
-        /* 顶部渐变横幅 */
-        .banner {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-        }
-        .banner h1 {
-            font-size: 2rem;
-            margin-bottom: 5px;
-        }
-        .banner p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
+    /* 1. 顶部横幅 (Hero) */
+    .hero{
+        background: linear-gradient(90deg, #4a6cf7, #6a4af7); /* 紫色渐变 */
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+    }
+    .hero h1{font-size:32px;margin-bottom:10px}
+    .hero .sub-title{font-size:16px;opacity:0.9;margin-bottom:5px}
+    .hero .badge{background:#ffd700;color:#333;padding:3px 8px;border-radius:12px;font-size:12px;font-weight:bold}
 
-        /* 导航栏 */
-        nav {
-            background-color: #2c3e50;
-            display: flex;
-            gap: 0;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 12px 24px;
-            font-size: 1rem;
-            transition: background 0.2s;
-        }
-        nav a.active {
-            background-color: #3498db;
-        }
-        nav a:hover {
-            background-color: #34495e;
-        }
+    /* 2. 导航栏 */
+    .nav{
+        background:#343a40; /* 深蓝色 */
+        display:flex;
+        align-items:center;
+        padding:0 20px;
+        height:50px;
+        border-radius:0 0 8px 8px;
+        margin-bottom:20px;
+    }
+    .nav a{
+        color:white;
+        text-decoration:none;
+        padding:0 20px;
+        height:100%;
+        display:flex;
+        align-items:center;
+        border-bottom:3px solid transparent;
+    }
+    .nav a.active{border-bottom:3px solid #007bff;background:#2c3138}
+    .nav a:hover{background:#2c3138}
 
-        /* 主容器：两栏布局 */
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
+    /* 3. 主内容区 (flex 布局实现左右分栏) */
+    .content{display:flex;gap:20px}
 
-        /* 文章卡片 */
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-        .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            border-left: 4px solid #3498db;
-            padding-left: 10px;
-        }
-        .post-item {
-            margin-bottom: 15px;
-        }
-        .post-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        .post-date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-        .read-more {
-            color: #3498db;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
+    /* 左侧文章列表 */
+    .articles{flex:3;background:white;padding:25px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+    .articles h2{border-left:4px solid #007bff;padding-left:10px;margin-bottom:20px;font-size:22px}
+    .article-item{border-bottom:1px solid #eee;padding:15px 0}
+    .article-item h3{font-size:18px;margin-bottom:5px}
+    .article-item .meta{font-size:12px;color:#666;margin-bottom:10px}
+    .article-item a{color:#007bff;text-decoration:none;font-size:14px}
+    .article-item a:hover{text-decoration:underline}
 
-        /* 侧边栏卡片 */
-        .sidebar .card {
-            text-align: center;
-        }
-        .sidebar .card h3 {
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #3498db;
-            display: inline-block;
-        }
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin: 0 auto 15px;
-            background-image: url("https://picsum.photos/200/200");
-            background-size: cover;
-        }
-        .time-display {
-            margin-top: 15px;
-            font-size: 1.1rem;
-            color: #333;
-        }
-        .social-links {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        .social-btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
+    /* 右侧边栏 */
+    .sidebar{flex:1;display:flex;flex-direction:column;gap:20px}
+    .card{background:white;padding:20px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+    .card h3{font-size:16px;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #eee}
 
-        /* 页脚 */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
-            margin-top: 30px;
-        }
+    /* 关于作者卡片 */
+    .author-card .avatar{
+        width:80px;
+        height:80px;
+        border-radius:50%;
+        background:#ccc url("https://via.placeholder.com/80") center/cover;
+        margin:0 auto 15px;
+        display:block;
+    }
+    .author-card p{font-size:14px;color:#555;line-height:1.5}
 
-        /* 响应式适配 */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* 当前时间卡片 */
+    .time-card p{font-size:18px;font-weight:bold;color:#333}
+</style>
 </head>
 <body>
-    <div class="banner">
+
+<div class="container">
+    <!-- 顶部紫色横幅 -->
+    <div class="hero">
         <h1>我的技术博客</h1>
-        <p>记录前端与 Python 学习之路</p>
+        <div class="sub-title">分享前端与编程知识</div>
+        <div class="badge">暗黑模式</div>
     </div>
 
-    <nav>
-        <a href="index.html" class="active">首页</a>
-        <a href="articles.html">文章</a>
-        <a href="about.html">关于我</a>
-    </nav>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <a href="#">首页</a>
+        <a href="#" class="active">文章</a>
+        <a href="#">关于我</a>
+    </div>
 
-    <div class="container">
-        <div class="main-content">
-            <div class="card">
-                <h2>最新文章</h2>
-                <div class="post-item">
-                    <div class="post-title">我的博客</div>
-                    <div class="post-date">2026-04-19</div>
-                    <p>这是我做的第一个博客！...</p>
-                    <a href="#" class="read-more">阅读全文</a>
-                </div>
+    <!-- 主内容区：左右分栏 -->
+    <div class="content">
+        <!-- 左侧文章列表 -->
+        <div class="articles">
+            <h2>文章列表</h2>
+            <div class="article-item">
+                <h3>理解 JavaScript 闭包</h3>
+                <div class="meta">2030-08-10 · qianshen</div>
+                <p>闭包是 JavaScript 中最重要的概念之一，本文带你彻底理解闭包原理及应用。</p>
+                <a href="#">阅读全文</a>
+            </div>
+            <div class="article-item">
+                <h3>CSS Grid 入门</h3>
+                <div class="meta">2030-08-15 · qianshen</div>
+                <p>Grid 布局是现代 CSS 布局神器，本文带你掌握二维布局的核心。</p>
+                <a href="#">阅读全文</a>
             </div>
         </div>
 
+        <!-- 右侧边栏 -->
         <div class="sidebar">
-            <div class="card">
+            <!-- 关于作者卡片 -->
+            <div class="card author-card">
                 <h3>关于作者</h3>
-                <div class="avatar"></div>
-                <p><p>我叫 xxr，正在学习 Python、前端、网络工程.</p>
+                <img src="https://via.placeholder.com/80" alt="头像" class="avatar">
+                <p><strong>qianshen</strong><br>
+                23岁网赚一师，必笑榜榜首。别人21岁玩的王者，我21岁玩的股票、编程、健身、教练。<br>
+                你们懂吧~<br>
+                全栈开发工程师，热爱分享技术，拥有2.5年一线大厂经验，目前专注于前端工程化与性能优化。</p>
             </div>
 
-            <div class="card">
+            <!-- 当前时间卡片 -->
+            <div class="card time-card">
                 <h3>当前时间</h3>
-                <div class="time-display" id="current-time"></div>
-            </div>
-
-            <div class="card">
-                <h3>关注我</h3>
-                <div class="social-links">
-                    <a href="#" class="social-btn">GitHub</a>
-                    <a href="#" class="social-btn">知乎</a>
-                </div>
+                <p>14:55:32</p>
             </div>
         </div>
     </div>
+</div>
 
-    <footer>© 2026 我的技术博客 | Powered by GitHub Pages</footer>
-
-    <script>
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('current-time').textContent = now.toLocaleTimeString('zh-CN', { hour12: false });
-        }
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
 </body>
 </html>
